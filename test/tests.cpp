@@ -45,16 +45,16 @@ TEST(Test3, ChoosingSingleSuffix) {
 }
 
 TEST(Test4, Choosing_suffix) {
-    std::string text = "Shut up and, Take my money, Take my money now";
+    std::string text = "shut up and take my money! take my money now!";
     Markov mark = Markov(text, 2);
 
     std::map<prefix, suffixes> map = mark.GetStatetab();
-    prefix pref1;
 
-    for (int i = 0; i < 2; i++) {
-        pref1.pop_back();
-    }
-    EXPECT_EQ(map[pref1].at(0), "Take my money now");
+    prefix pref1;
+    pref1.push_back("shut");
+    pref1.push_back("up");
+
+    EXPECT_EQ(map[pref1].at(0), "and");
 }
 
 
