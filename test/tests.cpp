@@ -44,6 +44,25 @@ TEST(Test3, ChoosingSingleSuffix) {
     EXPECT_EQ(map[pref1].at(0), "and");
 }
 
+TEST(Test4, ChoosingRandomSuffixFromMultipleOptions) {
+    std::string text = "shut up and take my money! take my money now!";
+    Markov mark = Markov(text, 1);
+    
+    std::map<prefix, suffixes> map = mark.GetStatetab();
+    
+    prefix pref1;
+    pref1.push_back("hello");
+    
+    srand(1);
+    std::string chosenSuffix = map[pref1].at(0);
+    for (int i = 1; i < map[pref1].size(); i++) {
+        if (rand() % (i + 1) == 0) {
+            chosenSuffix = map[pref1].at(i);
+        }
+    }
+    EXPECT_TRUE(chosenSuffix == "money!" || chosenSuffix == "now!");
+}
+
 TEST(Test5, TextFormation) {
     std::string text = "shut up and take my money! take my money now!";
     Markov mark = Markov(text, 2);
