@@ -53,7 +53,7 @@ TEST(Test4, Choosing_suffix) {
 
     for (int i = 0; i < 2; i++) {
         pref1.pop_back();
-
+    }
     EXPECT_EQ(map[pref1].at(0), "Take my money now");
 }
 
